@@ -27,14 +27,14 @@
 				{{ t('important') }}
 			</a>
 		</li>
-		<li class="nav-item{{ (request()->get('filter')=='request') ? ' active' : '' }}">
-			<a class="nav-link" href="{{ url('account/messages?filter=request') }}">
-				Message Request
+{{--		<li class="nav-item{{ (request()->get('filter')=='request') ? ' active' : '' }}">--}}
+{{--			<a class="nav-link" href="{{ url('account/messages?filter=request') }}">--}}
+{{--				Message Request--}}
 
-				<span class="count-threads-with-new-messages count badge {{ $badgeColor }}{{ $visibility }}">
-					{{ \App\Helpers\Number::short($countThreadsWithNewMessage) }}
-				</span>
-			</a>
-		</li>
+{{--				<span class="count-threads-with-new-messages count badge {{ $badgeColor }}{{ $visibility }}">--}}
+{{--					{{ \App\Helpers\Number::short($countThreadsWithNewMessage) }}--}}
+{{--				</span>--}}
+{{--			</a>--}}
+{{--		</li>--}}
 	</ul>
 </div>

@@ -28,6 +28,7 @@ use App\Notifications\ReplySent;
 use App\Notifications\SellerContacted;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Notification;
 use Torann\LaravelMetaTags\Facades\MetaTag;
@@ -67,10 +68,14 @@ class MessagesController extends AccountBaseController
 			$threads = $this->threadsWithNewMessage;
 		}
 
-		//Get threads request
-		if (request()->get('filter') =='request') {
-			$threads = $this->threadsWithNewMessage;
-		}
+		//Get threads requesting system
+//		if (request()->get('filter') =='request') {
+//		    $data=Thread::
+//            with('participants')->get();
+//
+//
+//			$threads = $this->threadsWithNewMessage;
+//		}
 		
 		// Get threads started by this user
 		if (request()->get('filter') == 'started') {
