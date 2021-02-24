@@ -39,8 +39,19 @@
 				@endif
 			@endforeach
 		@endif
-		
-	</div>
+{{--home banner--}}
+
+			<div class="container">
+						<div class="row justify-content-center ">
+							<?php $banner=\App\Models\Banner::where('id',1)->get()?>
+							<img src="{{asset('images/banner/'.$banner[0]->logo)}}" alt="">
+
+						</div>
+
+			</div>
+		</div>
+
+{{--home banner end --}}
 @endsection
 
 @section('after_scripts')

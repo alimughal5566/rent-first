@@ -351,6 +351,13 @@
 								</li>
 							@endif
 						@endif
+							@if (auth()->user()->can('home-banner') || userHasSuperAdminPermissions())
+							<li class="sidebar-item">
+								<a href="{{route('home-banner')}}" class="sidebar-link">
+									<i data-feather="hard-drive" class="feather-icon"></i> <span class="hide-menu">Home Banner</span>
+								</a>
+							</li>
+					@endif
 					@endif
 					
 				</ul>

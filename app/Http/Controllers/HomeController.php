@@ -16,14 +16,19 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ArrayHelper;
+use App\Helpers\Files\Storage\StorageDisk;
 use App\Helpers\UrlGen;
+use App\Models\Banner;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\HomeSection;
 use App\Models\SubAdmin1;
 use App\Models\City;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Torann\LaravelMetaTags\Facades\MetaTag;
 use App\Helpers\Localization\Helpers\Country as CountryLocalizationHelper;
 use App\Helpers\Localization\Country as CountryLocalization;
@@ -438,4 +443,48 @@ class HomeController extends FrontController
 		
 		return $cacheExpiration;
 	}
+
+
+    public function show(){
+
+        return view('admin::banner');
+    }
+
+    public function createBanner(Request $request){
+
+        if ($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $imageName = "banner".".".$image->extension();
+            $imagePath = public_path() . '/images/banner';
+            $image->move($imagePath, $imageName);
+            $imageDbPath = $imageName;
+        }
+        $query=Banner::where('id',1);
+        $check=$query->get();
+
+
+        if ($check){
+            $checkUpdate=$query->update([
+            'logo' => $imageDbPath,
+        ]);
+
+        }
+        else{
+            $checkUpdate=$query->create([
+                'id' => '1',
+                'logo' => $imageDbPath,
+
+            ]);
+        }
+
+        if ($checkUpdate){
+            return redirect()->back();
+        }
+        else{
+            return redirect()->back()->with('messgae','banner process failed');
+        }
+
+
+        }
+
 }

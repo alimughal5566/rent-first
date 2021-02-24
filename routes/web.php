@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Banner;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -23,6 +24,11 @@ use Illuminate\Support\Str;
 | The upgrading process routes
 |
 */
+
+
+
+
+
 Route::group([
 	'namespace'  => 'App\Http\Controllers\Install',
 	'middleware' => ['web', 'no.http.cache'],
@@ -147,7 +153,7 @@ Route::group([
 		Route::put('backups/create', 'BackupController@create');
 		Route::get('backups/download/{file_name?}', 'BackupController@download');
 		Route::delete('backups/delete/{file_name?}', 'BackupController@delete')->where('file_name', '(.*)');
-		
+
 		// Actions
 		Route::get('actions/clear_cache', 'ActionController@clearCache');
 		Route::get('actions/clear_images_thumbnails', 'ActionController@clearImagesThumbnails');
@@ -223,10 +229,15 @@ Route::group([
 		
 		// HOMEPAGE
 		Route::get('/', 'HomeController@index');
-		Route::get(dynamicRoute('routes.countries'), 'CountriesController@index');
-		
-		
-		// AUTH
+        Route::get(dynamicRoute('routes.countries'), 'CountriesController@index');
+
+        //Home Banner
+        Route::get('home-banner', 'HomeController@show')->name('home-banner');
+        Route::post('bannerCreate','HomeController@createBanner')->name('bannerCreate');
+
+
+
+        // AUTH
 		Route::group(['middleware' => ['guest', 'no.http.cache']], function ($router) {
 			// Registration Routes...
 			Route::get(dynamicRoute('routes.register'), 'Auth\RegisterController@showRegistrationForm');
@@ -480,3 +491,6 @@ Route::group([
 		});
 	});
 });
+
+//home banner route
+

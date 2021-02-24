@@ -62,4 +62,8 @@ class FrontController extends Controller
 			$this->middleware(['domain.verification']);
 		}
 	}
+
+
+
+
 }
