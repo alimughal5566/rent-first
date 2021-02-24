@@ -459,21 +459,18 @@ class HomeController extends FrontController
             $image->move($imagePath, $imageName);
             $imageDbPath = $imageName;
         }
-        $query=Banner::where('id',1);
-        $check=$query->get();
+        $query=Banner::all()->first();
 
-
-        if ($check){
+        if (!$query==null){
             $checkUpdate=$query->update([
             'logo' => $imageDbPath,
         ]);
 
         }
         else{
-            $checkUpdate=$query->create([
-                'id' => '1',
-                'logo' => $imageDbPath,
-
+            $checkUpdate=Banner::create([
+                'id'=>1,
+                'logo'=>$imageDbPath,
             ]);
         }
 

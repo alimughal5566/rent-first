@@ -43,8 +43,16 @@
 
 			<div class="container">
 						<div class="row justify-content-center ">
-							<?php $banner=\App\Models\Banner::where('id',1)->get()?>
-							<img src="{{asset('images/banner/'.$banner[0]->logo)}}" alt="">
+							<?php $banner=\App\Models\Banner::all()->first();
+							?>
+								@if($banner)
+									<img src="{{asset('images/banner/'.$banner->logo)}}" alt="">
+								@endif
+
+
+
+
+
 
 						</div>
 
