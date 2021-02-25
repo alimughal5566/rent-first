@@ -14,4 +14,4 @@ Disallow: /main.php
 Disallow: /mix-manifest.json
 
 
-Sitemap: http://127.0.0.1:8000/pk/sitemaps.xml
+Sitemap: http://localhost/rent-first/pk/sitemaps.xml
